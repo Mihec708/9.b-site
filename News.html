@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="https://i.imgur.com/X1ye2sW.png" type="image/png">
   <link rel="stylesheet" href="stylesOther.css">
-  <title>9.B oficial site</title>
+  <title>9.B Official Site</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
 
@@ -35,14 +35,12 @@
       background: rgba(0, 0, 0, 0.9);
       transition: 0.3s;
       padding-top: 60px;
-      overflow: visible;
       z-index: 1000;
     }
 
     .menu-item-container {
       position: relative;
       display: block;
-      overflow: visible;
     }
 
     .menu-btn {
@@ -61,9 +59,9 @@
       position: absolute;
       top: calc(100% + 5px);
       left: 50%;
-      transform: translateX(-50%) translateY(5px);
-      background: rgb(0, 0, 0);
-      color: rgb(255, 255, 255);
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
       padding: 5px 8px;
       border-radius: 4px;
       white-space: nowrap;
@@ -95,12 +93,79 @@
       border-radius: 2px;
     }
 
+    .feedback-container {
+      width: 100%;
+      max-width: 600px;
+      padding: 120px 20px 20px;
+    }
+
+    .feedback-box {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .feedback-box input,
+    .feedback-box textarea {
+      width: 100%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      resize: none;
+      overflow: hidden;
+    }
+
+    .feedback-box input::placeholder,
+    .feedback-box textarea::placeholder {
+      color: #ccc;
+    }
+
+    .feedback-box button {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .feedback-box button:hover {
+      background-color: #666;
+    }
+
+    .success-message {
+      display: none;
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+
+    .success-message.show {
+      display: block;
+      opacity: 1;
+    }
+
     .news-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      padding: 100px 20px 80px;
+      padding: 30px 20px 80px;
       width: 100%;
     }
 
@@ -126,6 +191,67 @@
       text-align: center;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("lsqDWeXTV22XqKePQ");
+    })();
+
+    function sendFeedback() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const title = document.getElementById("title").value.trim();
+      const messageField = document.getElementById("message");
+      const message = messageField.value.trim();
+      const time = new Date().toLocaleString();
+
+      if (!name || !email || !message || !title) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      emailjs.send("service_s3enp5z", "template_pshf0me", {
+        name: name,
+        email: email,
+        title: title,
+        message: message,
+        time: time
+      })
+      .then(() => {
+        const successMsg = document.getElementById("success-message");
+        successMsg.classList.add("show");
+
+        setTimeout(() => {
+          successMsg.classList.remove("show");
+        }, 3000);
+
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("title").value = "";
+        messageField.value = "";
+        messageField.style.height = "auto";
+      })
+      .catch((error) => {
+        console.error("❌ EmailJS Error:", error);
+        alert("Something went wrong. Check your service/template ID and fields.");
+      });
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
+    }
+
+    window.onload = () => {
+      const messageField = document.getElementById("message");
+      messageField.style.height = "80px";
+
+      messageField.addEventListener("input", () => {
+        messageField.style.height = "auto";
+        messageField.style.height = messageField.scrollHeight + "px";
+      });
+    };
+  </script>
 </head>
 <body>
   <div class="menu" id="menu">
@@ -142,9 +268,7 @@
       <span class="tooltip">Actual News of 9.B</span>
     </div>
     <div class="menu-item-container">
-      <a href="https://ko-fi.com/9bb" class="menu-btn" id="donateButton">
-        Donate
-      </a>
+      <a href="https://ko-fi.com/9bb" class="menu-btn" id="donateButton">Donate</a>
       <span class="tooltip">Donate to keep page alive</span>
     </div>
   </div>
@@ -155,41 +279,32 @@
     <div class="bar"></div>
   </div>
 
-  <!-- Scrollable News Area -->
-  <div class="news-scroll-area">
-    <div class="news-container">
-      <div class="news-box">
-        <h3>Naslov 1</h3>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <img src="image.png" width="500" height="300"></p>
-      </div>
-      <div class="news-box">
-        <h3>Naslov 2</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </div>
-      <div class="news-box">
-        <h3>Naslov 3</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
+  <div class="feedback-container">
+    <div class="feedback-box">
+      <input type="email" id="email" placeholder="Your Gmail" required />
+      <input type="text" id="name" placeholder="Your name" required />
+      <input type="text" id="title" placeholder="Title" required />
+      <textarea id="message" placeholder="Write your message here..." rows="1" required></textarea>
+      <button onclick="sendFeedback()">Send Feedback</button>
+    </div>
+    <div id="success-message" class="success-message">Feedback sent successfully!</div>
+  </div>
+
+  <div class="news-container">
+    <div class="news-box">
+      <h3>Naslov 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit... <img src="image.png" width="500" height="300"></p>
+    </div>
+    <div class="news-box">
+      <h3>Naslov 2</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+    </div>
+    <div class="news-box">
+      <h3>Naslov 3</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
     </div>
   </div>
 
   <div class="footer-text">druzina 9.B</div>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
-    }
-
-    // Prevent default action on the button click
-    document.getElementById("donateButton").addEventListener("click", function(event) {
-      // Open Ko-fi link in a new tab
-      window.open('https://ko-fi.com/9bb', '_blank');
-
-      // Redirect to Thanks.html in the same tab
-      event.preventDefault(); // Prevent default link behavior (no navigation)
-      window.location.href = 'https://mihec708.github.io/9.b-site/Thanks.html';
-    });
-  </script>
 </body>
 </html>
