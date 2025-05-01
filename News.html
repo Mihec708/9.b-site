@@ -1,13 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="icon.svg" type="image/svg">
   <title>9.B oficial site</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: url('https://wallpapercave.com/wp/wp2406589.jpg') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+    }
+
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      transition: 0.3s;
+      padding-top: 60px;
+      overflow: visible;
+      z-index: 1000;
+    }
+
+    .menu-item-container {
+      position: relative;
+      display: block;
+      overflow: visible;
+    }
+
+    .menu-btn {
+      display: block;
+      width: 100%;
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+    }
+
+    .menu-item-container:hover .menu-btn {
+      background: #444;
+    }
+
+    .tooltip {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 50%;
+      transform: translateX(-50%) translateY(5px);
+      background: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      padding: 5px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      font-size: 14px;
+      z-index: 1010;
+    }
+
+    .menu-item-container:hover .tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .bar {
+      width: 30px;
+      height: 4px;
+      background: white;
+      margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    .news-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 100px 20px 80px;
+      width: 100%;
+    }
+
+    .news-box {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .news-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      margin: 30px 0 20px;
+      color: white;
+      font-family: 'Uncial Antiqua', cursive;
+      font-size: 24px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <div class="menu" id="menu">
+    <div class="menu-item-container">
+      <a href="https://mihec708.github.io/9.b-site/Main.html" class="menu-btn">Home</a>
+      <span class="tooltip">Back Home</span>
+    </div>
     <div class="menu-item-container">
       <a href="#" class="menu-btn">Video</a>
       <span class="tooltip">Watch our video</span>
@@ -25,20 +149,38 @@
       <span class="tooltip">Donate to keep page alive</span>
     </div>
   </div>
+
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
+
+  <!-- Scrollable News Area -->
+<div class="news-scroll-area">
+  <div class="news-container">
+    <div class="news-box">
+      <h3>Naslov 1</h3>
+      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <img src="image.png" width="500" height="300"></p>
+    </div>
+    <div class="news-box">
+      <h3>Naslov 2</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div class="news-box">
+      <h3>Naslov 3</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    
+  </div>
+</div>
+
   <div class="footer-text">druzina 9.B</div>
+
   <script>
     function toggleMenu() {
-      var menu = document.getElementById("menu");
-      if (menu.style.left === "0px") {
-        menu.style.left = "-250px";
-      } else {
-        menu.style.left = "0px";
-      }
+      const menu = document.getElementById("menu");
+      menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
     }
   </script>
 </body>
