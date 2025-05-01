@@ -1,11 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="https://i.imgur.com/X1ye2sW.png" type="image/png">
-  <link rel="stylesheet" href="stylesMain.css">
-  <title>9.B oficial site</title>
+  <link rel="stylesheet" href="stylesOther.css">
+  <title>9.B Official Site</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://wallpapercave.com/wp/wp2406589.jpg') no-repeat center center/cover;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .menu-item-container {
+      position: relative;
+      display: block;
+      border-bottom: 1px solid #444;
+    }
+
+    .menu-btn {
+      display: block;
+      width: 100%;
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .menu-btn:hover {
+      background: #444;
+      transform: scale(1.05);
+    }
+
+    /* Tooltip styling */
+    .tooltip {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(5px);
+      background: #000;
+      color: white;
+      padding: 5px 8px;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-item-container:hover .tooltip {
+      opacity: 1;
+    }
+
+    /* Burger menu */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .bar {
+      width: 30px;
+      height: 4px;
+      background: white;
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Footer text with medieval font */
+    .footer-text {
+      position: absolute;
+      bottom: 20px;
+      color: white;
+      font-family: 'Uncial Antiqua', cursive;
+      font-size: 24px;
+    }
+
+  </style>
 </head>
 <body>
   <div class="menu" id="menu">
@@ -22,37 +121,43 @@
       <span class="tooltip">Actual News of 9.B</span>
     </div>
     <div class="menu-item-container">
-      <a href="https://ko-fi.com/9bb" target="_blank" class="menu-btn" onclick="donateClick()">Donate</a>
-
-      <script>
-        function donateClick() {
-          // Open PayPal in a new tab first
-          window.open('https://ko-fi.com/9bb', '_blank');
-          
-          // Redirect the current page to Thanks.html
-          window.location.href = 'https://mihec708.github.io/9.b-site/Thanks.html';
-        }
-      </script>
-      
-      
+      <a href="https://ko-fi.com/9bb" class="menu-btn" id="donateButton">
+        Donate
+      </a>
       <span class="tooltip">Donate to keep page alive</span>
     </div>
   </div>
+
   <div class="menu-toggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
+
   <div class="footer-text">druzina 9.B</div>
+
   <script>
     function toggleMenu() {
-      var menu = document.getElementById("menu");
+      const menu = document.getElementById("menu");
+      const menuToggle = document.querySelector(".menu-toggle");
+
+      // Toggle menu visibility
       if (menu.style.left === "0px") {
-        menu.style.left = "-250px";
+        menu.style.left = "-250px"; // Close menu
       } else {
-        menu.style.left = "0px";
+        menu.style.left = "0px"; // Open menu
       }
+
+      // Toggle active state for hamburger icon
+      menuToggle.classList.toggle("active");
     }
+
+    // Prevent default action on the button click
+    document.getElementById("donateButton").addEventListener("click", function(event) {
+      window.open('https://ko-fi.com/9bb', '_blank');
+      event.preventDefault();
+      window.location.href = 'https://mihec708.github.io/9.b-site/Thanks.html';
+    });
   </script>
 </body>
 </html>

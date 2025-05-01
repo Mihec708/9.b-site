@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="https://i.imgur.com/X1ye2sW.png" type="image/png">
+  <link rel="stylesheet" href="stylesOther.css">
   <title>9.B oficial site</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
@@ -141,7 +142,9 @@
       <span class="tooltip">Actual News of 9.B</span>
     </div>
     <div class="menu-item-container">
-      <a href="https://www.paypal.com/donate/?hosted_button_id=L9Y7R8FCTQ55Y" class="menu-btn">Donate</a>
+      <a href="https://ko-fi.com/9bb" class="menu-btn" id="donateButton">
+        Donate
+      </a>
       <span class="tooltip">Donate to keep page alive</span>
     </div>
   </div>
@@ -153,23 +156,22 @@
   </div>
 
   <!-- Scrollable News Area -->
-<div class="news-scroll-area">
-  <div class="news-container">
-    <div class="news-box">
-      <h3>Naslov 1</h3>
-      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <img src="image.png" width="500" height="300"></p>
+  <div class="news-scroll-area">
+    <div class="news-container">
+      <div class="news-box">
+        <h3>Naslov 1</h3>
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <img src="image.png" width="500" height="300"></p>
+      </div>
+      <div class="news-box">
+        <h3>Naslov 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div class="news-box">
+        <h3>Naslov 3</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
     </div>
-    <div class="news-box">
-      <h3>Naslov 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div class="news-box">
-      <h3>Naslov 3</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-    
   </div>
-</div>
 
   <div class="footer-text">druzina 9.B</div>
 
@@ -178,6 +180,16 @@
       const menu = document.getElementById("menu");
       menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
     }
+
+    // Prevent default action on the button click
+    document.getElementById("donateButton").addEventListener("click", function(event) {
+      // Open Ko-fi link in a new tab
+      window.open('https://ko-fi.com/9bb', '_blank');
+
+      // Redirect to Thanks.html in the same tab
+      event.preventDefault(); // Prevent default link behavior (no navigation)
+      window.location.href = 'https://mihec708.github.io/9.b-site/Thanks.html';
+    });
   </script>
 </body>
 </html>

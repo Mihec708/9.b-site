@@ -4,39 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://i.imgur.com/X1ye2sW.png" type="image/png">
-  <link rel="stylesheet" href="stylesThanks.css">
+  <link rel="stylesheet" href="stylesOther.css">
   <title>9.B oficial site</title>
   <style>
-    body {
-      background: url('https://wallpapercave.com/wp/wp2406589.jpg') no-repeat center center/cover;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+    @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
 
-    .thank-you-box {
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    .thank-you-box h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .thank-you-box p {
-      font-size: 16px;
+    body {
+      background: url('https://wallpapercave.com/wp/wp2406589.jpg') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* Centers content vertically */
+      position: relative;
     }
 
     .menu {
@@ -49,6 +36,7 @@
       transition: 0.3s;
       padding-top: 60px;
       overflow: visible;
+      z-index: 1000;
     }
 
     .menu-item-container {
@@ -96,7 +84,7 @@
       top: 20px;
       left: 20px;
       cursor: pointer;
-      z-index: 1000;
+      z-index: 1100;
     }
 
     .bar {
@@ -105,6 +93,26 @@
       background: white;
       margin: 5px 0;
       border-radius: 2px;
+    }
+
+    .thank-you-box {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .thank-you-box h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .thank-you-box p {
+      font-size: 16px;
     }
 
     .footer-text {
@@ -131,7 +139,9 @@
       <span class="tooltip">Actual News of 9.B</span>
     </div>
     <div class="menu-item-container">
-      <a href="https://www.paypal.com/donate/?hosted_button_id=L9Y7R8FCTQ55Y" class="menu-btn">Donate</a>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=L9Y7R8FCTQ55Y" class="menu-btn" id="donateButton">
+        Donate
+      </a>
       <span class="tooltip">Donate to keep page alive</span>
     </div>
   </div>
@@ -151,13 +161,19 @@
 
   <script>
     function toggleMenu() {
-      var menu = document.getElementById("menu");
-      if (menu.style.left === "0px") {
-        menu.style.left = "-250px";
-      } else {
-        menu.style.left = "0px";
-      }
+      const menu = document.getElementById("menu");
+      menu.style.left = (menu.style.left === "0px") ? "-250px" : "0px";
     }
+
+    // Prevent default action on the button click
+    document.getElementById("donateButton").addEventListener("click", function(event) {
+      // Open PayPal donation link in a new tab
+      window.open('https://www.paypal.com/donate/?hosted_button_id=L9Y7R8FCTQ55Y', '_blank');
+
+      // Redirect to Thanks.html in the same tab
+      event.preventDefault(); // Prevent default link behavior (no navigation)
+      window.location.href = 'https://mihec708.github.io/9.b-site/Thanks.html';
+    });
   </script>
 </body>
 </html>
