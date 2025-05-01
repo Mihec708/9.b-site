@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="icon.svg" type="image/svg">
+  <link rel="icon" href="icon.png" type="image/png">
   <link rel="stylesheet" href="stylesMain.css">
   <title>9.B oficial site</title>
 </head>
@@ -22,7 +22,19 @@
       <span class="tooltip">Actual News of 9.B</span>
     </div>
     <div class="menu-item-container">
-      <a href="https://www.paypal.com/donate/?hosted_button_id=L9Y7R8FCTQ55Y" class="menu-btn">Donate</a>
+      <a href="https://ko-fi.com/9bb" target="_blank" class="menu-btn" onclick="donateClick()">Donate</a>
+
+      <script>
+        function donateClick() {
+          // Open PayPal in a new tab first
+          window.open('https://ko-fi.com/9bb', '_blank');
+          
+          // Redirect the current page to Thanks.html
+          window.location.href = 'https://mihec708.github.io/9.b-site/Thanks.html';
+        }
+      </script>
+      
+      
       <span class="tooltip">Donate to keep page alive</span>
     </div>
   </div>
