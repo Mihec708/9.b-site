@@ -96,13 +96,13 @@
     }
 
     .feedback-container {
-      width: 100%;
-      max-width: 600px;
-      padding: 120px 20px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  width: 100%;
+  min-height: 100vh; /* ensures full height for vertical centering */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
     .feedback-box {
       background: rgba(0, 0, 0, 0.75);
@@ -293,12 +293,8 @@
       <span class="tooltip">Back Home</span>
     </div>
     <div class="menu-item-container">
-      <a href="#" class="menu-btn">Video</a>
+      <a href="https://youtu.be/ODCytBcScPc" class="menu-btn">Video</a>
       <span class="tooltip">Watch our video</span>
-    </div>
-    <div class="menu-item-container">
-      <a href="#" class="menu-btn">News</a>
-      <span class="tooltip">Actual News of 9.B</span>
     </div>
     <div class="menu-item-container">
       <a href="https://ko-fi.com/9bb" class="menu-btn" id="donateButton" target="_blank" rel="noopener noreferrer">Donate</a>
@@ -323,22 +319,6 @@
     </div>
     <div id="success-message" class="success-message">
       Feedback sent successfully!
-    </div>
-  </div>
-
-  <!-- News -->
-  <div class="news-container">
-    <div class="news-box">
-      <h3>Naslov 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit... <img src="image.png" width="500" height="300"></p>
-    </div>
-    <div class="news-box">
-      <h3>Naslov 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-    </div>
-    <div class="news-box">
-      <h3>Naslov 3</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
     </div>
   </div>
 
